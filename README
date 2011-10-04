@@ -18,21 +18,28 @@ Within your main game's init function:
         ....
   }
 
-2) ig.Game.swapIndex function
+2) The Entity class has had 4 new methods injected into it:
 
-   Used when you have a situation where you want to put one entity in front of another, but don't won't to modify the z index directly and sort, etc.  
-   
-       ig.game.swapzIndex(entityA, entityB);
+  .moveToBack()
 
-3) ig.Entity.moveToFront
+    Moves the Entity to the beginning of the ig.entities.array, which
+    causes its .draw() to be called first. Thus, the Entity will be drawn
+    before all other Entities at the back of the canvas.
 
-   Used to place an entity at the "front" or top of the list of entities. For example if you had a pointer entity that should always be above any newly generated entities. Within that enity:
+  .moveToFront()
 
-      update: function() {
-          ...
-          this.moveToFront();
-          this.parent();
-      }
+    Moves the Entity to the end of the ig.entities.array, which
+    causes its .draw() to be called last. Thus, the Entity will be drawn
+    after all other Entities at the front of the canvas.
 
+  .setzIndex( newZ )
+
+    Takes and sets a new .zIndex for the Entity and re-inserts it in the proper
+    sequence within the ig.game.entities array.
+
+  .swapzIndex( ent )
+
+    Takes an Entity and swaps it with the calling Entity in the ig.game.entities
+    array.
  
 
