@@ -21,20 +21,31 @@ ig.Zmagic = ig.Class.extend({
     	},
 
     	init: function() {
+    		
+    		ig.Game.inject({
+    			
+    			zEntities: [],
+    			
+    			update: function(){
+    				this.zEntities = this.entities;
+    				this.parent();
+				this.entities = this.zEntities;
+    			}
+    		});
     	
     		//Inject four new methods into ig.Entity
 		ig.Entity.inject({
 			
 			//Move calling Entity to the Back
 			moveToBack: function(){
-				var ents = ig.game.entities;
+				var ents = ig.game.zEntities;
 				ents.splice( ents.indexOf( this ), 1 );
 				ents.unshift( this );
 			},
 	        	
 	        	//Move calling Entity to the front
 	            	moveToFront: function() {
-	            		var ents = ig.game.entities;
+	            		var ents = ig.game.zEntities;
 	                	ents.splice( ents.indexOf( this ), 1 );
 	                	ents.push( this );
 	            	},
@@ -43,7 +54,7 @@ ig.Zmagic = ig.Class.extend({
 		        setzIndex: function( newZ ){
 		        	
 		        	//remove current zIndex
-		    		var ents = ig.game.entities;
+		    		var ents = ig.game.zEntities;
 		    		ents.splice( ents.indexOf( this ), 1 );
 		    		
 		    		//insert new zIndex
@@ -59,7 +70,7 @@ ig.Zmagic = ig.Class.extend({
 				
 			//Swap calling Entity with another Entity
 			swapzIndex: function( ent ){
-					var ents = ig.game.entities;
+					var ents = ig.game.zEntities;
 					var a = ents.indexOf( this );
 					var b = ents.indexOf( ent );
 					ents[a] = ent;
