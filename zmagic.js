@@ -23,7 +23,7 @@ ig.Zmagic = ig.Class.extend({
     init: function() {
         
 		//Inject three new methods into ig.Entity
-        ig.Entity.inject({
+		ig.Entity.inject({
         	
         	//Move calling Entity to the Back
         	moveToBack: function(){
@@ -73,6 +73,3 @@ ig.Zmagic = ig.Class.extend({
 });
 
 });
-
-
-
