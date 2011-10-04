@@ -21,26 +21,50 @@ ig.Zmagic = ig.Class.extend({
     },
 
     init: function() {
-        //Inject a new function into ig.Game which allows entities to swap
-        //their indexes (actual place number within the ig.game.entities array
-        //as opposed to the zIndex value - which may be different), 
-        //so as to draw one entity "in front" of another.
-        ig.Game.inject({
-            swapzIndex: function( entityA, entityB ) {
-                x = this.entities.indexOf(entityA);
-                y = this.entities.indexOf(entityB);
-                this.entities[y] = entityA;
-                this.entities[x] = entityB;
-            }
-        });
-
+        
+		//Inject three new methods into ig.Entity
         ig.Entity.inject({
+        	
+        	//Move calling Entity to the Back
+        	moveToBack: function(){
+        		var ents = ig.game.entities;
+        		ents.splice( ents.indexOf( this ), 1 );
+        		ents.unshift( this );
+        	},
+        	
+        	//Move calling Entity to the front
             moveToFront: function() {
-                //Find the "topmost" entity and swap its actual z index with
-                //the calling entity's current z index.
-                last = ig.game.entities.length - 1;
-                ig.game.swapzIndex(this, ig.game.entities[last]);
-            }
+            	var ents = ig.game.entities;
+                ents.splice( ents.indexOf( this ), 1 );
+                ents.push( this );
+            },
+        	
+        	//Move calling Entity to a specified zIndex
+	        setzIndex: function( newZ ){
+	        	
+	        	//remove current zIndex
+	    		var ents = ig.game.entities;
+	    		ents.splice( ents.indexOf( this ), 1 );
+	    		
+	    		//insert new zIndex
+	    		var i = ents.length;
+	    		while( i-- ){
+			        if( ents[i].zIndex <= newZ ){
+			            ents.splice( i + 1, 0, this );
+			            break;
+			        }
+	    		}
+	    		this.zIndex = newZ;
+			},
+			
+			//Swap calling Entity with another Entity
+			swapzIndex: function( ent ){
+				var ents = ig.game.entities;
+				var a = ents.indexOf( this );
+				var b = ents.indexOf( ent );
+				ents[a] = ent;
+				ents[b] = this;
+			}
         });
 
         ig.Zmagic.instance = this;
