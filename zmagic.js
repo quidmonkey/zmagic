@@ -21,16 +21,15 @@ ig.Zmagic = ig.Class.extend({
     },
 
     init: function() {
-        
-		//Inject three new methods into ig.Entity
+    	//Inject three new methods into ig.Entity
 		ig.Entity.inject({
-        	
-        	//Move calling Entity to the Back
-        	moveToBack: function(){
-        		var ents = ig.game.entities;
-        		ents.splice( ents.indexOf( this ), 1 );
-        		ents.unshift( this );
-        	},
+			
+			//Move calling Entity to the Back
+			moveToBack: function(){
+				var ents = ig.game.entities;
+				ents.splice( ents.indexOf( this ), 1 );
+				ents.unshift( this );
+			},
         	
         	//Move calling Entity to the front
             moveToFront: function() {
