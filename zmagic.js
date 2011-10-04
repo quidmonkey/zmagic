@@ -8,35 +8,36 @@ ig.module(
 
 ig.Zmagic = ig.Class.extend({
 
-    instance: null,
+    	instance: null,
 
-    staticInstantiate: function( ignore ) {
-        if( ig.Zmagic.instance == null ) {
-            return null;
-        }
-        else {
-            throw("Error: ig.Zmagic has already been instantiated. It can only be instantiated once.");
-            return ig.Zmagic.instance;
-        }
-    },
+    	staticInstantiate: function( ignore ) {
+        	if( ig.Zmagic.instance == null ) {
+            		return null;
+        	}
+        	else {
+            		throw("Error: ig.Zmagic has already been instantiated. It can only be instantiated once.");
+            		return ig.Zmagic.instance;
+        	}
+    	},
 
-    init: function() {
-    	//Inject three new methods into ig.Entity
+    	init: function() {
+    	
+    		//Inject three new methods into ig.Entity
 		ig.Entity.inject({
 			
-			//Move calling Entity to the Back
-			moveToBack: function(){
-				var ents = ig.game.entities;
-				ents.splice( ents.indexOf( this ), 1 );
-				ents.unshift( this );
-			},
+		//Move calling Entity to the Back
+		moveToBack: function(){
+			var ents = ig.game.entities;
+			ents.splice( ents.indexOf( this ), 1 );
+			ents.unshift( this );
+		},
         	
         	//Move calling Entity to the front
-            moveToFront: function() {
-            	var ents = ig.game.entities;
-                ents.splice( ents.indexOf( this ), 1 );
-                ents.push( this );
-            },
+            	moveToFront: function() {
+            		var ents = ig.game.entities;
+                	ents.splice( ents.indexOf( this ), 1 );
+                	ents.push( this );
+            	},
         	
         	//Move calling Entity to a specified zIndex
 	        setzIndex: function( newZ ){
@@ -64,10 +65,10 @@ ig.Zmagic = ig.Class.extend({
 				ents[a] = ent;
 				ents[b] = this;
 			}
-        });
+        	});
 
-        ig.Zmagic.instance = this;
-    }
+        	ig.Zmagic.instance = this;
+    	}
 
 });
 
