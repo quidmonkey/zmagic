@@ -1,6 +1,6 @@
 A plugin for the Impact javascript game engine (http://impactjs.com/). This 
 plugin extends ig.Game and ig.Entity with functions to directly manipulate the 
-z index. This fork is an extension of the original pluign developed by boneheadmed.
+z index. This fork is an extension of the original plugin developed by boneheadmed.
 
 How to use:
 Create a new plugins folder if one does not exist: lib/plugins
