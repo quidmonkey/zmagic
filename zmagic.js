@@ -36,7 +36,7 @@ ig.Zmagic = ig.Class.extend({
     		//Inject four new methods into ig.Entity
 		ig.Entity.inject({
 			
-			//Move calling Entity to the Back
+			//Move calling Entity to the back
 			moveToBack: function(){
 				var ents = ig.game.zEntities;
 				ents.splice( ents.indexOf( this ), 1 );
