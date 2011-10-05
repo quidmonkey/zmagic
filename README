@@ -24,13 +24,13 @@ Within your main game's init function:
 
   .moveToBack()
 
-    Moves the Entity to the beginning of the ig.entities.array, which
+    Moves the Entity to the beginning of the ig.game.entities array, which
     causes its .draw() to be called first. Thus, the Entity will be drawn
     before all other Entities at the back of the canvas.
 
   .moveToFront()
 
-    Moves the Entity to the end of the ig.entities.array, which
+    Moves the Entity to the end of the ig.game.entities array, which
     causes its .draw() to be called last. Thus, the Entity will be drawn
     after all other Entities at the front of the canvas.
 
